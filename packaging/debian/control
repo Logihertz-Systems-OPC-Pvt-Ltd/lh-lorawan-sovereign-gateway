@@ -1,0 +1,9 @@
+Package: lh-lorawan-sovereign-gateway
+Version: 0.1.0
+Section: utils
+Priority: optional
+Architecture: amd64
+Maintainer: Sameer Tawade <ops@logihertz.com>
+Homepage: https://www.logihertz.com
+Description: lh-lorawan - RFC 4493 AES-CMAC Message Integrity Code & Time-on-Air
+ Cloud-free C11 air-gapped IN865/EU868 LoRaWAN packet forwarder & local OTAA Join Server with clean-room FIPS 197 AES-128, RFC 4493 AES-CMAC MIC verification, DevNonce/FCntUp anti-replay, and CSS Time-on-Air math.

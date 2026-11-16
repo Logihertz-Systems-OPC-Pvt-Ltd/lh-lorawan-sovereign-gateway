@@ -1,0 +1,52 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build & Verify (${{ matrix.compiler }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        compiler: [gcc, clang]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential ${{ matrix.compiler }}
+
+      - name: Compile and Run Verification Test Suite
+        run: |
+          make CC=${{ matrix.compiler }} clean test
+
+      - name: Verify CLI Smoke Operations
+        run: |
+          ./bin/lh-lorawan --version
+          ./bin/lh-lorawan --help
+          ./bin/lh-lorawan audit fixtures/hardened_lorawan_policy.json
+          ./bin/lh-lorawan audit fixtures/hardened_lorawan_policy.json --format=json
+          ./bin/lh-lorawan audit fixtures/hardened_lorawan_policy.json --format=sarif
+          ./bin/lh-lorawan calc-toa --sf=7 --bw=125 --payload=16 --region=IN865
+          ./bin/lh-lorawan calc-toa --sf=12 --bw=125 --payload=23 --region=IN865 --format=json
+          ./bin/lh-lorawan join-otaa 0000112233445566770102030405060708010007f4a03e \
+            --app-key=2B7E151628AED2A6ABF7158809CF4F3C \
+            --join-nonce=010203 \
+            --net-id=000001 \
+            --dev-addr=00112233
+          ./bin/lh-lorawan verify-uplink 403322110000010001f7f96bff7d644f7ac2f66c0c76 \
+            --nwk-skey=7504da33cd7f83015a20c4ec1c7688ff \
+            --app-skey=a702552f2fa89297c0cea5d43107ebd9 \
+            --dev-addr=00112233 \
+            --fcnt=0 \
+            --freq=865.0625 \
+            --region=IN865

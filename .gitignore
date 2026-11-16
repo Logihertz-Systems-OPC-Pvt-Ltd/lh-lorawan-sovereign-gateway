@@ -1,0 +1,8 @@
+build/
+bin/
+tests/test_runner
+*.o
+*.tar.gz
+dist/
+*.log
+*.tmp

@@ -1,0 +1,23 @@
+{
+  "policy_name": "Logihertz Sovereign Hardened LoRaWAN Policy",
+  "require_otaa_only": true,
+  "allow_abp_devices": false,
+  "persist_devnonce_store": true,
+  "strict_32bit_fcnt_anti_replay": true,
+  "disable_legacy_semtech_udp": true,
+  "sovereign_local_join_server": true,
+  "reject_default_weak_appkeys": true,
+  "min_appkey_entropy_bits": 128,
+  "constant_time_mic_verification": true,
+  "drop_invalid_mic_at_edge": true,
+  "enforce_regional_band_limits": true,
+  "max_eirp_dbm": 30.0,
+  "local_mqtt_mtls_required": true,
+  "broker_bind_loopback_only": true,
+  "adr_spoof_guard_enabled": true,
+  "rssi_snr_plausibility_check": true,
+  "encrypt_root_keys_at_rest": true,
+  "zeroize_old_session_keys": true,
+  "jamming_noise_floor_monitor": true,
+  "log_join_and_mic_anomalies": true
+}

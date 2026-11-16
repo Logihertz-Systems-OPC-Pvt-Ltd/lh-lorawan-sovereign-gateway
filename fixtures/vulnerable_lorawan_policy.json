@@ -1,0 +1,23 @@
+{
+  "policy_name": "Insecure Legacy Semtech UDP LoRaWAN Policy",
+  "require_otaa_only": false,
+  "allow_abp_devices": true,
+  "persist_devnonce_store": false,
+  "strict_32bit_fcnt_anti_replay": false,
+  "disable_legacy_semtech_udp": false,
+  "sovereign_local_join_server": false,
+  "reject_default_weak_appkeys": false,
+  "min_appkey_entropy_bits": 64,
+  "constant_time_mic_verification": false,
+  "drop_invalid_mic_at_edge": false,
+  "enforce_regional_band_limits": false,
+  "max_eirp_dbm": 36.0,
+  "local_mqtt_mtls_required": false,
+  "broker_bind_loopback_only": false,
+  "adr_spoof_guard_enabled": false,
+  "rssi_snr_plausibility_check": false,
+  "encrypt_root_keys_at_rest": false,
+  "zeroize_old_session_keys": false,
+  "jamming_noise_floor_monitor": false,
+  "log_join_and_mic_anomalies": false
+}
